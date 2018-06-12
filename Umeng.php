@@ -5,17 +5,16 @@
  * Date: 2018/6/12
  * Time: 11:30 AM
  */
-
 namespace yiipush\umeng;
 
-use yiipush\umeng\Upush\Upush;
+require 'Push/Upush.php';
 use yii\base\Component;
 
 class Umeng extends Component
 {
-	public function sendUpush()
+	public function sendUpush($type)
 	{
-		$push = new Upush();
+		$push = new Upush\Upush();
 		$push->sendAndroidUnicast();
 	}
 
