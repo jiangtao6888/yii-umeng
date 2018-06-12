@@ -22,21 +22,21 @@ class Umeng extends Component
 	protected $timestamp;
 	protected $validation_token;
 
-	function __construct ()
+	public function __construct ()
 	{
 		$this->timestamp = strval(time());
 	}
 
-	function sendAndroidBroadcast ()
+	public function sendAndroidBroadcast ($params=[])
 	{
 		try {
 			$brocast = new AndroidBroadcast();
 			$brocast->setAppMasterSecret($this->appMasterSecret);
 			$brocast->setPredefinedKeyValue("appkey", $this->appkey);
 			$brocast->setPredefinedKeyValue("timestamp", $this->timestamp);
-			$brocast->setPredefinedKeyValue("ticker", "Android broadcast ticker");
-			$brocast->setPredefinedKeyValue("title", "中文的title");
-			$brocast->setPredefinedKeyValue("text", "Android broadcast text");
+			$brocast->setPredefinedKeyValue("ticker", $params['ticker']);
+			$brocast->setPredefinedKeyValue("title", $params['title']);
+			$brocast->setPredefinedKeyValue("text", $params['text']);
 			$brocast->setPredefinedKeyValue("after_open", "go_app");
 			// Set 'production_mode' to 'false' if it's a test device. 
 			// For how to register a test device, please see the developer doc.
@@ -51,7 +51,7 @@ class Umeng extends Component
 		}
 	}
 
-	function sendAndroidUnicast ()
+	public function sendAndroidUnicast ($params)
 	{
 		try {
 			$unicast = new AndroidUnicast();
@@ -59,10 +59,10 @@ class Umeng extends Component
 			$unicast->setPredefinedKeyValue("appkey", $this->appkey);
 			$unicast->setPredefinedKeyValue("timestamp", $this->timestamp);
 			// Set your device tokens here
-			$unicast->setPredefinedKeyValue("device_tokens", "ApHTjNqO_LIOnq-MgT8D-xiUPgfR1u231--bRBoo21JB");
-			$unicast->setPredefinedKeyValue("ticker", "Android unicast ticker");
-			$unicast->setPredefinedKeyValue("title", "Android unicast title");
-			$unicast->setPredefinedKeyValue("text", "Android unicast text");
+			$unicast->setPredefinedKeyValue("device_tokens", $params['device_tokens']);
+			$unicast->setPredefinedKeyValue("ticker",$params['ticker']);
+			$unicast->setPredefinedKeyValue("title", $params['title']);
+			$unicast->setPredefinedKeyValue("text", $params['text']);
 			$unicast->setPredefinedKeyValue("after_open", "go_app");
 			// Set 'production_mode' to 'false' if it's a test device. 
 			// For how to register a test device, please see the developer doc.
@@ -77,42 +77,42 @@ class Umeng extends Component
 		}
 	}
 
-	function sendAndroidListcast ()
+	public function sendAndroidListcast ($params)
 	{
 		try {
-			$unicast = new AndroidListcast();
-			$unicast->setAppMasterSecret($this->appMasterSecret);
-			$unicast->setPredefinedKeyValue("appkey", $this->appkey);
-			$unicast->setPredefinedKeyValue("timestamp", $this->timestamp);
+			$listcast = new AndroidListcast();
+			$listcast->setAppMasterSecret($this->appMasterSecret);
+			$listcast->setPredefinedKeyValue("appkey", $this->appkey);
+			$listcast->setPredefinedKeyValue("timestamp", $this->timestamp);
 			// Set your device tokens here
-			$unicast->setPredefinedKeyValue("device_tokens", '');
-			$unicast->setPredefinedKeyValue("ticker", "Android unicast ticker");
-			$unicast->setPredefinedKeyValue("title", "Android unicast title");
-			$unicast->setPredefinedKeyValue("text", "Android unicast text");
-			$unicast->setPredefinedKeyValue("after_open", "go_app");
+			$listcast->setPredefinedKeyValue("device_tokens",  $params['device_tokens']);
+			$listcast->setPredefinedKeyValue("ticker",  $params['ticker']);
+			$listcast->setPredefinedKeyValue("title", $params['title']);
+			$listcast->setPredefinedKeyValue("text",  $params['text']);
+			$listcast->setPredefinedKeyValue("after_open", "go_app");
 			// Set 'production_mode' to 'false' if it's a test device.
 			// For how to register a test device, please see the developer doc.
-			$unicast->setPredefinedKeyValue("production_mode", "true");
+			$listcast->setPredefinedKeyValue("production_mode", "true");
 			// Set extra fields
-			$unicast->setExtraField("test", "helloworld");
+			$listcast->setExtraField("test", "helloworld");
 			print("Sending unicast notification, please wait...\r\n");
-			$unicast->send();
+			$listcast->send();
 			print("Sent SUCCESS\r\n");
 		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
 
-	function sendAndroidFilecast ()
+	public function sendAndroidFilecast ($params)
 	{
 		try {
 			$filecast = new AndroidFilecast();
 			$filecast->setAppMasterSecret($this->appMasterSecret);
 			$filecast->setPredefinedKeyValue("appkey", $this->appkey);
 			$filecast->setPredefinedKeyValue("timestamp", $this->timestamp);
-			$filecast->setPredefinedKeyValue("ticker", "Android filecast ticker");
-			$filecast->setPredefinedKeyValue("title", "Android filecast title");
-			$filecast->setPredefinedKeyValue("text", "Android filecast text");
+			$filecast->setPredefinedKeyValue("ticker", $params['ticker']);
+			$filecast->setPredefinedKeyValue("title", $params['title']);
+			$filecast->setPredefinedKeyValue("text", $params['text']);
 			$filecast->setPredefinedKeyValue("after_open", "go_app");  //go to app
 			print("Uploading file contents, please wait...\r\n");
 			// Upload your device tokens, and use '\n' to split them if there are multiple tokens
@@ -125,42 +125,18 @@ class Umeng extends Component
 		}
 	}
 
-	function sendAndroidGroupcast ()
+	public function sendAndroidGroupcast ($params)
 	{
 		try {
-			/* 
-		 	 *  Construct the filter condition:
-		 	 *  "where": 
-		 	 *	{
-    	 	 *		"and": 
-    	 	 *		[
-      	 	 *			{"tag":"test"},
-      	 	 *			{"tag":"Test"}
-    	 	 *		]
-		 	 *	}
-		 	 */
-			$filter = array(
-				"where" => array(
-					"and" => array(
-						array(
-							"tag" => "test"
-						),
-						array(
-							"tag" => "Test"
-						)
-					)
-				)
-			);
-
 			$groupcast = new AndroidGroupcast();
 			$groupcast->setAppMasterSecret($this->appMasterSecret);
 			$groupcast->setPredefinedKeyValue("appkey", $this->appkey);
 			$groupcast->setPredefinedKeyValue("timestamp", $this->timestamp);
 			// Set the filter condition
-			$groupcast->setPredefinedKeyValue("filter", $filter);
-			$groupcast->setPredefinedKeyValue("ticker", "Android groupcast ticker");
-			$groupcast->setPredefinedKeyValue("title", "Android groupcast title");
-			$groupcast->setPredefinedKeyValue("text", "Android groupcast text");
+			$groupcast->setPredefinedKeyValue("filter", $params['filter']);
+			$groupcast->setPredefinedKeyValue("ticker", $params['ticker']);
+			$groupcast->setPredefinedKeyValue("title", $params['title']);
+			$groupcast->setPredefinedKeyValue("text", $params['text']);
 			$groupcast->setPredefinedKeyValue("after_open", "go_app");
 			// Set 'production_mode' to 'false' if it's a test device. 
 			// For how to register a test device, please see the developer doc.
@@ -173,7 +149,7 @@ class Umeng extends Component
 		}
 	}
 
-	function sendAndroidCustomizedcast ()
+	public function sendAndroidCustomizedcast ($params)
 	{
 		try {
 			$customizedcast = new AndroidCustomizedcast();
@@ -183,12 +159,12 @@ class Umeng extends Component
 			// Set your alias here, and use comma to split them if there are multiple alias.
 			// And if you have many alias, you can also upload a file containing these alias, then 
 			// use file_id to send customized notification.
-			$customizedcast->setPredefinedKeyValue("alias", "xx");
+			$customizedcast->setPredefinedKeyValue("alias", $params['alias']);
 			// Set your alias_type here
-			$customizedcast->setPredefinedKeyValue("alias_type", "xx");
-			$customizedcast->setPredefinedKeyValue("ticker", "Android customizedcast ticker");
-			$customizedcast->setPredefinedKeyValue("title", "Android customizedcast title");
-			$customizedcast->setPredefinedKeyValue("text", "Android customizedcast text");
+			$customizedcast->setPredefinedKeyValue("alias_type", $params['alias_type']);
+			$customizedcast->setPredefinedKeyValue("ticker", $params['ticker']);
+			$customizedcast->setPredefinedKeyValue("title", $params['title']);
+			$customizedcast->setPredefinedKeyValue("text", $params['text']);
 			$customizedcast->setPredefinedKeyValue("after_open", "go_app");
 			print("Sending customizedcast notification, please wait...\r\n");
 			$customizedcast->send();
@@ -198,7 +174,7 @@ class Umeng extends Component
 		}
 	}
 
-	function sendAndroidCustomizedcastFileId ()
+	public function sendAndroidCustomizedcastFileId ($params)
 	{
 		try {
 			$customizedcast = new AndroidCustomizedcast();
@@ -207,12 +183,12 @@ class Umeng extends Component
 			$customizedcast->setPredefinedKeyValue("timestamp", $this->timestamp);
 			// if you have many alias, you can also upload a file containing these alias, then
 			// use file_id to send customized notification.
-			$customizedcast->uploadContents("aa" . "\n" . "bb");
+			$customizedcast->uploadContents($params['content']);
 			// Set your alias_type here
-			$customizedcast->setPredefinedKeyValue("alias_type", "xx");
-			$customizedcast->setPredefinedKeyValue("ticker", "Android customizedcast ticker");
-			$customizedcast->setPredefinedKeyValue("title", "Android customizedcast title");
-			$customizedcast->setPredefinedKeyValue("text", "Android customizedcast text");
+			$customizedcast->setPredefinedKeyValue("alias_type",$params['alias_type']);
+			$customizedcast->setPredefinedKeyValue("ticker", $params['ticker']);
+			$customizedcast->setPredefinedKeyValue("title", $params['title']);
+			$customizedcast->setPredefinedKeyValue("text", $params['text']);
 			$customizedcast->setPredefinedKeyValue("after_open", "go_app");
 			print("Sending customizedcast notification, please wait...\r\n");
 			$customizedcast->send();
@@ -222,7 +198,7 @@ class Umeng extends Component
 		}
 	}
 
-	function sendIOSBroadcast ()
+	public function sendIOSBroadcast ($params)
 	{
 		try {
 			$brocast = new IOSBroadcast();
@@ -230,13 +206,13 @@ class Umeng extends Component
 			$brocast->setPredefinedKeyValue("appkey", $this->appkey);
 			$brocast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
-			$brocast->setPredefinedKeyValue("alert", "IOS 广播测试");
+			$brocast->setPredefinedKeyValue("alert",$params['alert']);
 			$brocast->setPredefinedKeyValue("badge", 0);
 			$brocast->setPredefinedKeyValue("sound", "chime");
 			// Set 'production_mode' to 'true' if your app is under production mode
 			$brocast->setPredefinedKeyValue("production_mode", "false");
 			// Set customized fields
-			$brocast->setCustomizedField("test", "helloworld");
+			$brocast->setCustomizedField("test",$params['test']);
 			print("Sending broadcast notification, please wait...\r\n");
 			$brocast->send();
 			print("Sent SUCCESS\r\n");
@@ -245,7 +221,7 @@ class Umeng extends Component
 		}
 	}
 
-	function sendIOSUnicast ()
+	public function sendIOSUnicast ($params)
 	{
 		try {
 			$unicast = new IOSUnicast();
@@ -253,14 +229,14 @@ class Umeng extends Component
 			$unicast->setPredefinedKeyValue("appkey", $this->appkey);
 			$unicast->setPredefinedKeyValue("timestamp", $this->timestamp);
 			// Set your device tokens here
-			$unicast->setPredefinedKeyValue("device_tokens", "xx");
-			$unicast->setPredefinedKeyValue("alert", "IOS 单播测试");
+			$unicast->setPredefinedKeyValue("device_tokens", $params['device_tokens']);
+			$unicast->setPredefinedKeyValue("alert", $params['alert']);
 			$unicast->setPredefinedKeyValue("badge", 0);
 			$unicast->setPredefinedKeyValue("sound", "chime");
 			// Set 'production_mode' to 'true' if your app is under production mode
 			$unicast->setPredefinedKeyValue("production_mode", "false");
 			// Set customized fields
-			$unicast->setCustomizedField("test", "helloworld");
+			$unicast->setCustomizedField("test",  $params['test']);
 			print("Sending unicast notification, please wait...\r\n");
 			$unicast->send();
 			print("Sent SUCCESS\r\n");
@@ -269,7 +245,7 @@ class Umeng extends Component
 		}
 	}
 
-	function sendIOSListcast ()
+	public function sendIOSListcast ($params)
 	{
 		try {
 			$unicast = new IOSListcast();
@@ -277,14 +253,14 @@ class Umeng extends Component
 			$unicast->setPredefinedKeyValue("appkey", $this->appkey);
 			$unicast->setPredefinedKeyValue("timestamp", $this->timestamp);
 			// Set your device tokens here
-			$unicast->setPredefinedKeyValue("device_tokens", "xx");
-			$unicast->setPredefinedKeyValue("alert", "IOS 单播测试");
+			$unicast->setPredefinedKeyValue("device_tokens",$params['device_tokens']);
+			$unicast->setPredefinedKeyValue("alert", $params['alert']);
 			$unicast->setPredefinedKeyValue("badge", 0);
 			$unicast->setPredefinedKeyValue("sound", "chime");
 			// Set 'production_mode' to 'true' if your app is under production mode
 			$unicast->setPredefinedKeyValue("production_mode", "false");
 			// Set customized fields
-			$unicast->setCustomizedField("test", "helloworld");
+			$unicast->setCustomizedField("test",$params['test']);
 			print("Sending unicast notification, please wait...\r\n");
 			$unicast->send();
 			print("Sent SUCCESS\r\n");
@@ -293,7 +269,7 @@ class Umeng extends Component
 		}
 	}
 
-	function sendIOSFilecast ()
+	public function sendIOSFilecast ($params)
 	{
 		try {
 			$filecast = new IOSFilecast();
@@ -301,14 +277,14 @@ class Umeng extends Component
 			$filecast->setPredefinedKeyValue("appkey", $this->appkey);
 			$filecast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
-			$filecast->setPredefinedKeyValue("alert", "IOS 文件播测试");
+			$filecast->setPredefinedKeyValue("alert",  $params['alert']);
 			$filecast->setPredefinedKeyValue("badge", 0);
 			$filecast->setPredefinedKeyValue("sound", "chime");
 			// Set 'production_mode' to 'true' if your app is under production mode
 			$filecast->setPredefinedKeyValue("production_mode", "false");
 			print("Uploading file contents, please wait...\r\n");
 			// Upload your device tokens, and use '\n' to split them if there are multiple tokens
-			$filecast->uploadContents("aa" . "\n" . "bb");
+			$filecast->uploadContents( $params['content']);
 			print("Sending filecast notification, please wait...\r\n");
 			$filecast->send();
 			print("Sent SUCCESS\r\n");
@@ -317,36 +293,16 @@ class Umeng extends Component
 		}
 	}
 
-	function sendIOSGroupcast ()
+	public function sendIOSGroupcast ($params)
 	{
 		try {
-			/* 
-		 	 *  Construct the filter condition:
-		 	 *  "where": 
-		 	 *	{
-    	 	 *		"and": 
-    	 	 *		[
-      	 	 *			{"tag":"iostest"}
-    	 	 *		]
-		 	 *	}
-		 	 */
-			$filter = array(
-				"where" => array(
-					"and" => array(
-						array(
-							"tag" => "iostest"
-						)
-					)
-				)
-			);
-
 			$groupcast = new IOSGroupcast();
 			$groupcast->setAppMasterSecret($this->appMasterSecret);
 			$groupcast->setPredefinedKeyValue("appkey", $this->appkey);
 			$groupcast->setPredefinedKeyValue("timestamp", $this->timestamp);
 			// Set the filter condition
-			$groupcast->setPredefinedKeyValue("filter", $filter);
-			$groupcast->setPredefinedKeyValue("alert", "IOS 组播测试");
+			$groupcast->setPredefinedKeyValue("filter",  $params['filter']);
+			$groupcast->setPredefinedKeyValue("alert",  $params['alert']);
 			$groupcast->setPredefinedKeyValue("badge", 0);
 			$groupcast->setPredefinedKeyValue("sound", "chime");
 			// Set 'production_mode' to 'true' if your app is under production mode
@@ -359,7 +315,7 @@ class Umeng extends Component
 		}
 	}
 
-	function sendIOSCustomizedcast ()
+	public function sendIOSCustomizedcast ($params)
 	{
 		try {
 			$customizedcast = new IOSCustomizedcast();
@@ -370,10 +326,10 @@ class Umeng extends Component
 			// Set your alias here, and use comma to split them if there are multiple alias.
 			// And if you have many alias, you can also upload a file containing these alias, then 
 			// use file_id to send customized notification.
-			$customizedcast->setPredefinedKeyValue("alias", "xx");
+			$customizedcast->setPredefinedKeyValue("alias", $params['alias']);
 			// Set your alias_type here
-			$customizedcast->setPredefinedKeyValue("alias_type", "xx");
-			$customizedcast->setPredefinedKeyValue("alert", "IOS 个性化测试");
+			$customizedcast->setPredefinedKeyValue("alias_type", $params['alias_type']);
+			$customizedcast->setPredefinedKeyValue("alert",  $params['alert']);
 			$customizedcast->setPredefinedKeyValue("badge", 0);
 			$customizedcast->setPredefinedKeyValue("sound", "chime");
 			// Set 'production_mode' to 'true' if your app is under production mode
