@@ -1,6 +1,6 @@
 <?php
 
-namespace Umeng;
+namespace yiipush\umeng;
 
 require_once(dirname(__FILE__) . '/' . 'core/android/AndroidBroadcast.php');
 require_once(dirname(__FILE__) . '/' . 'core/android/AndroidFilecast.php');
@@ -13,17 +13,16 @@ require_once(dirname(__FILE__) . '/' . 'core/ios/IOSGroupcast.php');
 require_once(dirname(__FILE__) . '/' . 'core/ios/IOSUnicast.php');
 require_once(dirname(__FILE__) . '/' . 'core/ios/IOSCustomizedcast.php');
 
+
 class Umeng
 {
-	protected $appkey = NULL;
-	protected $appMasterSecret = NULL;
+	public $appkey;
+	public $appMasterSecret;
 	protected $timestamp = NULL;
 	protected $validation_token = NULL;
 
-	function __construct ($key, $secret)
+	function __construct ()
 	{
-		$this->appkey = $key;
-		$this->appMasterSecret = $secret;
 		$this->timestamp = strval(time());
 	}
 

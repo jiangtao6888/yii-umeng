@@ -1,6 +1,6 @@
 <?php
 
-namespace Umeng;
+namespace yiipush\umeng;
 
 require_once(dirname(__FILE__) . '/../AndroidNotification.php');
 

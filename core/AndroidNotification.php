@@ -1,6 +1,6 @@
 <?php
 
-namespace Umeng;
+namespace yiipush\umeng;
 
 require_once('UmengNotification.php');
 
