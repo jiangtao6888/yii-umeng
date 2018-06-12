@@ -1,32 +1,29 @@
 <?php
-namespace yiipush\umeng\Push\Core;
+require_once('UmengNotification.php');
 
-abstract class IOSNotification extends UmengNotification
-{
+abstract class IOSNotification extends UmengNotification {
 	// The array for payload, please see API doc for more information
 	protected $iosPayload = array(
-		"aps" => array(
-			"alert" => NULL
-			//"badge"				=>  xx,
-			//"sound"				=>	"xx",
-			//"content-available"	=>	xx
-		)
-		//"key1"	=>	"value1",
-		//"key2"	=>	"value2"
-	);
+								"aps"       =>  array(
+													"alert"					=>  NULL
+													//"badge"				=>  xx,
+													//"sound"				=>	"xx",
+													//"content-available"	=>	xx	
+												)
+			        			//"key1"	=>	"value1",
+			        			//"key2"	=>	"value2"
+							);
 
 	// Keys can be set in the aps level
-	protected $APS_KEYS = array("alert", "badge", "sound", "content-available");
+	protected $APS_KEYS    = array("alert", "badge", "sound", "content-available");
 
-	function __construct ()
-	{
+	function __construct() {
 		parent::__construct();
 		$this->data["payload"] = $this->iosPayload;
 	}
 
 	// Set key/value for $data array, for the keys which can be set please see $DATA_KEYS, $PAYLOAD_KEYS, $BODY_KEYS, $POLICY_KEYS
-	function setPredefinedKeyValue ($key, $value)
-	{
+	function setPredefinedKeyValue($key, $value) {
 		if (!is_string($key))
 			throw new Exception("key should be a string!");
 
@@ -46,8 +43,7 @@ abstract class IOSNotification extends UmengNotification
 	}
 
 	// Set extra key/value for Android notification
-	function setCustomizedField ($key, $value)
-	{
+	function setCustomizedField($key, $value) {
 		if (!is_string($key))
 			throw new Exception("key should be a string!");
 		$this->data["payload"][$key] = $value;
