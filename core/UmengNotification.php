@@ -1,4 +1,5 @@
 <?php
+namespace Umeng;
 
 abstract class UmengNotification {
 	// The host

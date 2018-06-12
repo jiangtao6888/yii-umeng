@@ -1,4 +1,6 @@
 <?php
+namespace Umeng;
+
 require_once(dirname(__FILE__) . '/../AndroidNotification.php');
 
 class AndroidBroadcast extends AndroidNotification {

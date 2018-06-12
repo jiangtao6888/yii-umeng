@@ -1,4 +1,6 @@
 <?php
+namespace Umeng;
+
 require_once('UmengNotification.php');
 
 abstract class AndroidNotification extends UmengNotification {
