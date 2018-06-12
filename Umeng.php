@@ -13,13 +13,14 @@ require_once(dirname(__FILE__) . '/' . 'core/ios/IOSGroupcast.php');
 require_once(dirname(__FILE__) . '/' . 'core/ios/IOSUnicast.php');
 require_once(dirname(__FILE__) . '/' . 'core/ios/IOSCustomizedcast.php');
 
+use yii\base\Component;
 
-class Umeng
+class Umeng extends Component
 {
 	public $appkey;
 	public $appMasterSecret;
-	protected $timestamp = NULL;
-	protected $validation_token = NULL;
+	protected $timestamp;
+	protected $validation_token;
 
 	function __construct ()
 	{
