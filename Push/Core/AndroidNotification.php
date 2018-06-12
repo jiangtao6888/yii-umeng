@@ -1,5 +1,5 @@
 <?php
-
+namespace yiipush\umeng\Push\Core;
 
 abstract class AndroidNotification extends UmengNotification
 {

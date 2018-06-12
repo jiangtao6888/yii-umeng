@@ -1,5 +1,7 @@
 <?php
-namespace yiipush\umeng;
+namespace yiipush\umeng\Push\Core;
+
+
 
 class AndroidBroadcast extends \AndroidNotification {
 	function  __construct() {

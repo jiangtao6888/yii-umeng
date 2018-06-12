@@ -1,4 +1,5 @@
 <?php
+namespace yiipush\umeng\Push\Core;
 
 abstract class UmengNotification
 {
