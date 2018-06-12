@@ -9,7 +9,7 @@
 namespace yiipush\umeng;
 
 use yiipush\umeng\Upush\Upush;
-//use yii\base\Component;
+use yii\base\Component;
 
 class Umeng extends Component
 {
