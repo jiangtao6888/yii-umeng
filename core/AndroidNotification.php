@@ -1,44 +1,48 @@
 <?php
+
 namespace Umeng;
 
 require_once('UmengNotification.php');
 
-abstract class AndroidNotification extends UmengNotification {
+abstract class AndroidNotification extends UmengNotification
+{
 	// The array for payload, please see API doc for more information
 	protected $androidPayload = array(
-									"display_type"  =>  "notification",
-									"body"         	=>  array(
-															"ticker"       =>   NULL,
-															"title"        => NULL,
-															"text"         => NULL,
-															//"icon"       => "xx", 
-															//largeIcon    => "xx",
-															"play_vibrate" => "true", 
-															"play_lights"  => "true",
-															"play_sound"   => "true",
-															"after_open"   => NULL,
-															//"url"        => "xx",
-															//"activity"   => "xx",
-															//custom       => "xx"
-														),
-			        				//"extra"       => array("key1" => "value1", "key2" => "value2")
-								);
+		"display_type" => "notification",
+		"body" => array(
+			"ticker" => NULL,
+			"title" => NULL,
+			"text" => NULL,
+			//"icon"       => "xx", 
+			//largeIcon    => "xx",
+			"play_vibrate" => "true",
+			"play_lights" => "true",
+			"play_sound" => "true",
+			"after_open" => NULL,
+			//"url"        => "xx",
+			//"activity"   => "xx",
+			//custom       => "xx"
+		),
+		//"extra"       => array("key1" => "value1", "key2" => "value2")
+	);
 	// Keys can be set in the payload level
 	protected $PAYLOAD_KEYS = array("display_type");
 
 	// Keys can be set in the body level
-	protected $BODY_KEYS    = array("ticker", "title", "text", "builder_id", "icon", "largeIcon", "img", "play_vibrate", "play_lights", "play_sound", "after_open", "url", 
-								    "activity", "custom");
+	protected $BODY_KEYS = array("ticker", "title", "text", "builder_id", "icon", "largeIcon", "img", "play_vibrate", "play_lights", "play_sound", "after_open", "url",
+		"activity", "custom");
 
-	function __construct() {
+	function __construct ()
+	{
 		parent::__construct();
 		$this->data["payload"] = $this->androidPayload;
 	}
 
 	// Set key/value for $data array, for the keys which can be set please see $DATA_KEYS, $PAYLOAD_KEYS, $BODY_KEYS, $POLICY_KEYS
-	function setPredefinedKeyValue($key, $value) {
+	function setPredefinedKeyValue ($key, $value)
+	{
 		if (!is_string($key))
-			throw new Exception("key should be a string!");
+			throw new \Exception("key should be a string!");
 
 		if (in_array($key, $this->DATA_KEYS)) {
 			$this->data[$key] = $value;
@@ -62,17 +66,18 @@ abstract class AndroidNotification extends UmengNotification {
 			$this->data["policy"][$key] = $value;
 		} else {
 			if ($key == "payload" || $key == "body" || $key == "policy" || $key == "extra") {
-				throw new Exception("You don't need to set value for ${key} , just set values for the sub keys in it.");
+				throw new \Exception("You don't need to set value for ${key} , just set values for the sub keys in it.");
 			} else {
-				throw new Exception("Unknown key: ${key}");
+				throw new \Exception("Unknown key: ${key}");
 			}
 		}
 	}
 
 	// Set extra key/value for Android notification
-	function setExtraField($key, $value) {
+	function setExtraField ($key, $value)
+	{
 		if (!is_string($key))
-			throw new Exception("key should be a string!");
+			throw new \Exception("key should be a string!");
 		$this->data["payload"]["extra"][$key] = $value;
 	}
 }

@@ -1,12 +1,15 @@
 <?php
+
 namespace Umeng;
 
 require_once(dirname(__FILE__) . '/../IOSNotification.php');
 
-class IOSGroupcast extends IOSNotification {
-	function  __construct() {
+class IOSGroupcast extends IOSNotification
+{
+	function __construct ()
+	{
 		parent::__construct();
 		$this->data["type"] = "groupcast";
-		$this->data["filter"]  = NULL;
+		$this->data["filter"] = NULL;
 	}
 }

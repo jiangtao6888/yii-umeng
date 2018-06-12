@@ -1,12 +1,15 @@
 <?php
+
 namespace Umeng;
 
 require_once(dirname(__FILE__) . '/../AndroidNotification.php');
 
-class AndroidGroupcast extends AndroidNotification {
-	function  __construct() {
+class AndroidGroupcast extends AndroidNotification
+{
+	function __construct ()
+	{
 		parent::__construct();
 		$this->data["type"] = "groupcast";
-		$this->data["filter"]  = NULL;
+		$this->data["filter"] = NULL;
 	}
 }

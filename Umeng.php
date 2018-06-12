@@ -1,4 +1,5 @@
 <?php
+
 namespace Umeng;
 
 require_once(dirname(__FILE__) . '/' . 'core/android/AndroidBroadcast.php');
@@ -45,7 +46,7 @@ class Umeng
 			print("Sending broadcast notification, please wait...\r\n");
 			$brocast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
@@ -71,7 +72,7 @@ class Umeng
 			print("Sending unicast notification, please wait...\r\n");
 			$unicast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
@@ -93,7 +94,7 @@ class Umeng
 			print("Sending filecast notification, please wait...\r\n");
 			$filecast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
@@ -141,7 +142,7 @@ class Umeng
 			print("Sending groupcast notification, please wait...\r\n");
 			$groupcast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
@@ -166,7 +167,7 @@ class Umeng
 			print("Sending customizedcast notification, please wait...\r\n");
 			$customizedcast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
@@ -190,7 +191,7 @@ class Umeng
 			print("Sending customizedcast notification, please wait...\r\n");
 			$customizedcast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
@@ -213,7 +214,7 @@ class Umeng
 			print("Sending broadcast notification, please wait...\r\n");
 			$brocast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
@@ -237,7 +238,7 @@ class Umeng
 			print("Sending unicast notification, please wait...\r\n");
 			$unicast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
@@ -261,7 +262,7 @@ class Umeng
 			print("Sending filecast notification, please wait...\r\n");
 			$filecast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
@@ -303,7 +304,7 @@ class Umeng
 			print("Sending groupcast notification, please wait...\r\n");
 			$groupcast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
@@ -330,25 +331,8 @@ class Umeng
 			print("Sending customizedcast notification, please wait...\r\n");
 			$customizedcast->send();
 			print("Sent SUCCESS\r\n");
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
 	}
 }
-
-// Set your appkey and master secret here
-$demo = new Demo("your appkey", "your app master secret");
-$demo->sendAndroidUnicast();
-/* these methods are all available, just fill in some fields and do the test
- * $demo->sendAndroidBroadcast();
- * $demo->sendAndroidFilecast();
- * $demo->sendAndroidGroupcast();
- * $demo->sendAndroidCustomizedcast();
- * $demo->sendAndroidCustomizedcastFileId();
- *
- * $demo->sendIOSBroadcast();
- * $demo->sendIOSUnicast();
- * $demo->sendIOSFilecast();
- * $demo->sendIOSGroupcast();
- * $demo->sendIOSCustomizedcast();
- */
