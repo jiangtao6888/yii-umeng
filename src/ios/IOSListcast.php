@@ -1,7 +1,7 @@
 <?php
-namespace Umeng;
+namespace yiipush\umeng;
 
-class IOSListcast extends IOSNotification
+class IOSListcast extends \IOSNotification
 {
 	function __construct ()
 	{

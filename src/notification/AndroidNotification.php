@@ -1,6 +1,5 @@
 <?php
 
-namespace Umeng;
 
 abstract class AndroidNotification extends UmengNotification
 {

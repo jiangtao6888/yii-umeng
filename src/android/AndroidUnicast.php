@@ -1,8 +1,7 @@
 <?php
-namespace Umeng;
+namespace yiipush\umeng;
 
-
-class AndroidUnicast extends AndroidNotification
+class AndroidUnicast extends \AndroidNotification
 {
 	function __construct ()
 	{

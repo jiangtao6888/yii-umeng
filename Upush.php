@@ -1,19 +1,19 @@
 <?php
 
-namespace Umeng\PushMsg;
+namespace yiipush\umeng\push;
 
-use Umeng\AndroidBroadcast;
-use Umeng\AndroidFilecast;
-use Umeng\AndroidGroupcast;
-use Umeng\AndroidUnicast;
-use Umeng\AndroidListcast;
-use Umeng\AndroidCustomizedcast;
-use Umeng\IOSBroadcast;
-use Umeng\IOSFilecast;
-use Umeng\IOSGroupcast;
-use Umeng\IOSUnicast;
-use Umeng\IOSListcast;
-use Umeng\IOSCustomizedcast;
+use yiipush\umeng\AndroidBroadcast;
+use yiipush\umeng\AndroidFilecast;
+use yiipush\umeng\AndroidGroupcast;
+use yiipush\umeng\AndroidUnicast;
+use yiipush\umeng\AndroidListcast;
+use yiipush\umeng\AndroidCustomizedcast;
+use yiipush\umeng\IOSBroadcast;
+use yiipush\umeng\IOSFilecast;
+use yiipush\umeng\IOSGroupcast;
+use yiipush\umeng\IOSUnicast;
+use yiipush\umeng\IOSListcast;
+use yiipush\umeng\IOSCustomizedcast;
 
 
 class Upush

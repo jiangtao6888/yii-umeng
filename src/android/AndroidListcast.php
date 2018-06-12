@@ -1,8 +1,8 @@
 <?php
-namespace Umeng;
+namespace yiipush\umeng;
 
 
-class AndroidListcast extends AndroidNotification
+class AndroidListcast extends \AndroidNotification
 {
 	function __construct ()
 	{
