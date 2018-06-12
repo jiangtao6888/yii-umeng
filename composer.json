@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "yiipush\\umeng\\": ""
+      "yiipush\\umeng\\": "src"
     }
   }
 }
