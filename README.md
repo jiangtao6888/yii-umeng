@@ -4,6 +4,14 @@
 # 安装
 ```bash
 composer require yiipush/umeng
+
+如果下载不来下来可以修改 composer.json 文件
+"repositories": [
+    {
+         "type": "git",
+         "url": "https://github.com/jiangtao6888/yii-umeng"
+    }
+]
 ```
 
 # 配置
