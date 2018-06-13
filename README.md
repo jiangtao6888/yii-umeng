@@ -39,6 +39,8 @@ composer require yiipush/umeng
         'device_tokens'=>'device_tokens',
         'custom'=>[
             //自定义内容 $key=>$val
+            'key'=>'test',
+            'value'=>'helloworld'
         ]	
     ];
     yii::$app->push->sendAndroidUnicast($params);
@@ -54,6 +56,8 @@ composer require yiipush/umeng
         ],
         'custom'=>[
             //自定义内容 $key=>$val
+            'key'=>'test',
+            'value'=>'helloworld'
         ]
     ];
     yii::$app->push->sendAndroidListcast($params);
