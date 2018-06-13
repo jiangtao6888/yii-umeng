@@ -6,11 +6,13 @@ require_once(dirname(__FILE__) . '/' . 'core/android/AndroidBroadcast.php');
 require_once(dirname(__FILE__) . '/' . 'core/android/AndroidFilecast.php');
 require_once(dirname(__FILE__) . '/' . 'core/android/AndroidGroupcast.php');
 require_once(dirname(__FILE__) . '/' . 'core/android/AndroidUnicast.php');
+require_once(dirname(__FILE__) . '/' . 'core/android/AndroidListcast.php');
 require_once(dirname(__FILE__) . '/' . 'core/android/AndroidCustomizedcast.php');
 require_once(dirname(__FILE__) . '/' . 'core/ios/IOSBroadcast.php');
 require_once(dirname(__FILE__) . '/' . 'core/ios/IOSFilecast.php');
 require_once(dirname(__FILE__) . '/' . 'core/ios/IOSGroupcast.php');
 require_once(dirname(__FILE__) . '/' . 'core/ios/IOSUnicast.php');
+require_once(dirname(__FILE__) . '/' . 'core/ios/IOSListcast.php');
 require_once(dirname(__FILE__) . '/' . 'core/ios/IOSCustomizedcast.php');
 
 use yii\base\Component;
