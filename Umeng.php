@@ -44,7 +44,7 @@ class Umeng extends Component
 			// For how to register a test device, please see the developer doc.
 			$brocast->setPredefinedKeyValue("production_mode", "true");
 			// [optional]Set extra fields
-			$brocast->setExtraField($params['custom']);
+			$brocast->setExtraField($params['custom']['key'],$params['custom']['value']);
 			print("Sending broadcast notification, please wait...\r\n");
 			$brocast->send();
 			print("Sent SUCCESS\r\n");
@@ -70,7 +70,7 @@ class Umeng extends Component
 			// For how to register a test device, please see the developer doc.
 			$unicast->setPredefinedKeyValue("production_mode", "true");
 			// Set extra fields
-			$unicast->setExtraField($params['custom']);
+			$unicast->setExtraField($params['custom']['key'],$params['custom']['value']);
 			print("Sending unicast notification, please wait...\r\n");
 			$unicast->send();
 			print("Sent SUCCESS\r\n");
@@ -96,7 +96,7 @@ class Umeng extends Component
 			// For how to register a test device, please see the developer doc.
 			$listcast->setPredefinedKeyValue("production_mode", "true");
 			// Set extra fields
-			$listcast->setExtraField($params['custom']);
+			$listcast->setExtraField($params['custom']['key'],$params['custom']['value']);
 			print("Sending listcast notification, please wait...\r\n");
 			$listcast->send();
 			print("Sent SUCCESS\r\n");
@@ -214,7 +214,7 @@ class Umeng extends Component
 			// Set 'production_mode' to 'true' if your app is under production mode
 			$brocast->setPredefinedKeyValue("production_mode", "false");
 			// Set customized fields
-			$brocast->setCustomizedField($params['custom']);
+			$brocast->setCustomizedField($params['custom']['key'],$params['custom']['value']);
 			print("Sending broadcast notification, please wait...\r\n");
 			$brocast->send();
 			print("Sent SUCCESS\r\n");
@@ -238,7 +238,7 @@ class Umeng extends Component
 			// Set 'production_mode' to 'true' if your app is under production mode
 			$unicast->setPredefinedKeyValue("production_mode", "false");
 			// Set customized fields
-			$unicast->setCustomizedField($params['custom']);
+			$unicast->setCustomizedField($params['custom']['key'],$params['custom']['value']);
 			print("Sending unicast notification, please wait...\r\n");
 			$unicast->send();
 			print("Sent SUCCESS\r\n");
@@ -262,7 +262,7 @@ class Umeng extends Component
 			// Set 'production_mode' to 'true' if your app is under production mode
 			$unicast->setPredefinedKeyValue("production_mode", "false");
 			// Set customized fields
-			$unicast->setCustomizedField($params['custom']);
+			$unicast->setCustomizedField($params['custom']['key'],$params['custom']['value']);
 			print("Sending unicast notification, please wait...\r\n");
 			$unicast->send();
 			print("Sent SUCCESS\r\n");
