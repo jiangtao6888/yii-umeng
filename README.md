@@ -40,6 +40,17 @@ composer require yiipush/umeng
     ];
     yii::$app->push->sendAndroidUnicast($params);
     
+    //安卓发送列播
+    $params = [
+        'ticker'=>'ticker',
+        'title'=>'title',
+        'text'=>'text',
+        'device_tokens'=>[
+            'xx',
+            'xx'
+        ]
+    ];
+    yii::$app->push->sendAndroidListcast($params);
     //详细的参数可以参照官网或者看Umeng.php
 
 ?>
