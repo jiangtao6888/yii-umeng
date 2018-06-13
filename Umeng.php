@@ -44,7 +44,7 @@ class Umeng extends Component
 			// For how to register a test device, please see the developer doc.
 			$brocast->setPredefinedKeyValue("production_mode", "true");
 			// [optional]Set extra fields
-			$brocast->setExtraField("test", "helloworld");
+			$brocast->setExtraField($params['custom']);
 			print("Sending broadcast notification, please wait...\r\n");
 			$brocast->send();
 			print("Sent SUCCESS\r\n");
@@ -70,7 +70,7 @@ class Umeng extends Component
 			// For how to register a test device, please see the developer doc.
 			$unicast->setPredefinedKeyValue("production_mode", "true");
 			// Set extra fields
-			$unicast->setExtraField("test", "helloworld");
+			$unicast->setExtraField($params['custom']);
 			print("Sending unicast notification, please wait...\r\n");
 			$unicast->send();
 			print("Sent SUCCESS\r\n");
@@ -96,8 +96,8 @@ class Umeng extends Component
 			// For how to register a test device, please see the developer doc.
 			$listcast->setPredefinedKeyValue("production_mode", "true");
 			// Set extra fields
-			$listcast->setExtraField("test", "helloworld");
-			print("Sending unicast notification, please wait...\r\n");
+			$listcast->setExtraField($params['custom']);
+			print("Sending listcast notification, please wait...\r\n");
 			$listcast->send();
 			print("Sent SUCCESS\r\n");
 		} catch (\Exception $e) {
@@ -118,7 +118,7 @@ class Umeng extends Component
 			$filecast->setPredefinedKeyValue("after_open", "go_app");  //go to app
 			print("Uploading file contents, please wait...\r\n");
 			// Upload your device tokens, and use '\n' to split them if there are multiple tokens
-			$filecast->uploadContents("aa" . "\n" . "bb");
+			$filecast->uploadContents($params['content']);
 			print("Sending filecast notification, please wait...\r\n");
 			$filecast->send();
 			print("Sent SUCCESS\r\n");
@@ -214,7 +214,7 @@ class Umeng extends Component
 			// Set 'production_mode' to 'true' if your app is under production mode
 			$brocast->setPredefinedKeyValue("production_mode", "false");
 			// Set customized fields
-			$brocast->setCustomizedField("test",$params['test']);
+			$brocast->setCustomizedField($params['custom']);
 			print("Sending broadcast notification, please wait...\r\n");
 			$brocast->send();
 			print("Sent SUCCESS\r\n");
@@ -238,7 +238,7 @@ class Umeng extends Component
 			// Set 'production_mode' to 'true' if your app is under production mode
 			$unicast->setPredefinedKeyValue("production_mode", "false");
 			// Set customized fields
-			$unicast->setCustomizedField("test",  $params['test']);
+			$unicast->setCustomizedField($params['custom']);
 			print("Sending unicast notification, please wait...\r\n");
 			$unicast->send();
 			print("Sent SUCCESS\r\n");
@@ -262,7 +262,7 @@ class Umeng extends Component
 			// Set 'production_mode' to 'true' if your app is under production mode
 			$unicast->setPredefinedKeyValue("production_mode", "false");
 			// Set customized fields
-			$unicast->setCustomizedField("test",$params['test']);
+			$unicast->setCustomizedField($params['custom']);
 			print("Sending unicast notification, please wait...\r\n");
 			$unicast->send();
 			print("Sent SUCCESS\r\n");
@@ -342,5 +342,10 @@ class Umeng extends Component
 		} catch (\Exception $e) {
 			print("Caught exception: " . $e->getMessage());
 		}
+	}
+
+	public function getMsgStatus($task_id){
+
+		//https://msgapi.umeng.com/api/status?sign=mysign
 	}
 }

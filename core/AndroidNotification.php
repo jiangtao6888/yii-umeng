@@ -29,8 +29,7 @@ abstract class AndroidNotification extends UmengNotification
 	protected $PAYLOAD_KEYS = array("display_type");
 
 	// Keys can be set in the body level
-	protected $BODY_KEYS = array("ticker", "title", "text", "builder_id", "icon", "largeIcon", "img", "play_vibrate", "play_lights", "play_sound", "after_open", "url",
-		"activity", "custom");
+	protected $BODY_KEYS = array("ticker", "title", "text", "builder_id", "icon", "largeIcon", "img", "play_vibrate", "play_lights", "play_sound", "after_open", "url", "activity", "custom");
 
 	function __construct ()
 	{
